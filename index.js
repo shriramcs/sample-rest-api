@@ -26,12 +26,20 @@ app.get('/api/getSyllabus', function(req, res) {
     res.send(JSON.parse(contents));
 });
 
+app.post('/book', (req, res) => {
+    // We will be coding here
+});
+
+app.post('/*', (req, res) => {
+    res.redirect('/');
+});
+
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-app.post('/book', (req, res) => {
-    // We will be coding here
-});
+
+
+
 
 app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
