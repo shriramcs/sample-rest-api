@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        ShriramCS - UI Developer
+    </title>
+    <style>
+        body{
+            background-color: lightcyan;
+        }
+        .brand {
+            color:black;
+        }
+        .title-header {
+            color: #323232;
+        }
+        #topics {
+            width: 70%;
+        }
+        .topic-row {
+            background-color: lightblue;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .duration-cell,
+        .topic-cell {
+            padding: 10px;
+        }
+
+        .sub-topic-row{
+            display: none;
+        }
+        .sub-topic-row.active{
+            display: block;
+        }
+    </style>
+</head>
+<body onload="loadDetails()">
+    <h2 class="title-header">
+        Shriram CS
+    </h2>
+</body>

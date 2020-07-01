@@ -36,6 +36,10 @@ app.post('/*', (req, res) => {
     res.redirect('/');
 });
 
+app.get('/me', function(req, res) {
+    res.sendFile(path.join(__dirname + '/me.html'));
+});
+
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
