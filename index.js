@@ -1,9 +1,11 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+var serveStatic = require('serve-static');
 
 const app = express();
-const port  = 3000;
+app.use(serveStatic(path.join(__dirname, 'dist')))
+const port  = process.env.PORT || 3000;
 
 app.get('/api/offers', (req, res) => {
     const resp = [
@@ -37,9 +39,6 @@ app.post('/*', (req, res) => {
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
-
-
-
 
 
 app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
