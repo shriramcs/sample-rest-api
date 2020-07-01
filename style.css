@@ -1,0 +1,51 @@
+body{
+    /* background-color: lightcyan; */
+    display: block;
+}
+
+.brand {
+    color:black;
+}
+.title-header {
+    color: #323232;
+}
+
+.topic-row {
+    /* background-color: lightblue; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+.duration-cell,
+.topic-cell {
+    padding: 10px;
+}
+
+.sub-topic-row{
+    display: none;
+}
+.sub-topic-row.active{
+    display: block;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    /*  */
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    /*  */
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    /*  */
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    /*  */
+}

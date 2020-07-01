@@ -1,48 +1,54 @@
 <!DOCTYPE html>
+<html>
 <head>
     <title>
         Full stack Web Development Syllabus
     </title>
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sample application with node.js and express.js">
+    <meta name="author" content="Shriram Sapparad">
+    <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
     <style>
-        body{
-            background-color: lightcyan;
-        }
-        .brand {
-            color:black;
-        }
-        .title-header {
-            color: #323232;
-        }
-        #topics {
-            width: 70%;
-        }
-        .topic-row {
-            background-color: lightblue;
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-between;
+        header {
+            height: 100px;
             width: 100%;
+            background-color: #122f69;
+            color: aqua;
+            margin-bottom: 20px;
+            display: flex;
+            justify-items: center;
+            align-items: center;
         }
-        .duration-cell,
-        .topic-cell {
-            padding: 10px;
+        header span.brand-name {
+            padding-left: 40px;
+            font-size: xx-large;
         }
-
-        .sub-topic-row{
-            display: none;
-        }
-        .sub-topic-row.active{
-            display: block;
+        footer {
+            background-color: #4162a4;
+            height: 40px;
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            padding-left: 40px;
         }
     </style>
 </head>
 <body onload="loadDetails()">
-    <h2 class="title-header">
-        Full stack Web Development Syllabus
-    </h2>
-    <div id="topics">
+    <header>
+        <span class="brand-name">SHRIRAM CS</span>
+    </header>
+    <div class="container" style="min-height: 400px;">
+        <h2 class="display-8">Full stack Web Development</h2>
+        <div id="topics">
 
+        </div>
     </div>
+    <footer style="margin-top:100px;">
+        by @shriramcs
+    </footer>
     <script>
         function getDuration(duration){
             var hr = Math.floor(duration.value / 60);
@@ -52,7 +58,7 @@
         }
 
         function expandCollapseTopic(el) {
-            console.log(el);
+            // console.log(el);
             const subtitles = el.parentElement.querySelector('.sub-topic-row');
             if(subtitles.classList.contains('active')){
                 subtitles.classList.remove('active');
@@ -64,20 +70,20 @@
 
         function generateHtml(syllabus) {
             var d = document.getElementById("topics");
-            var nodes = '<div class="container">';
+            var nodes = '<div class="syllabus-container">';
             syllabus.forEach(topic => {
-                nodes += '<div class="topic">';
+                nodes += '<div class="card">';
                 
-                nodes += '<div class="topic-row" onclick="expandCollapseTopic(this)">';
+                nodes += '<div class="card-header topic-row" onclick="expandCollapseTopic(this)">';
                 nodes += `<div class="topic-cell">${topic.topic}</div>`;
                 nodes += `<div class="duration-cell">${getDuration(topic.duration)}</div>`;
                 nodes += '</div>'
 
-                nodes += '<div class="sub-topic-row">';
+                nodes += '<ul class="list-group sub-topic-row">';
                 topic.contentList.forEach(subtitle => {
-                    nodes += `<div class="topic-cell">${subtitle}</div>`;
+                    nodes += `<li class="list-group-item topic-cell">${subtitle}</li>`;
                 });
-                nodes += '</div>';
+                nodes += '</ul>';
 
                 nodes += '</div>';
             });
@@ -86,7 +92,7 @@
         }
 
         function loadDetails() {
-            console.log('get rest call');
+            // console.log('get rest call');
             const header = {
                 headers: {
                     "content-type": 'application/json',
@@ -95,7 +101,7 @@
             };
             fetch('/api/getSyllabus', header).then((response) => {
                 response.json().then((data) => {
-                    console.log('rest call details', data);
+                    // console.log('rest call details', data);
                     generateHtml(data);
                 });
             });
@@ -103,3 +109,4 @@
         }
     </script>
 </body>
+</html>

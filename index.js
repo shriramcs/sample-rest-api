@@ -4,7 +4,7 @@ const fs = require('fs');
 var serveStatic = require('serve-static');
 
 const app = express();
-app.use(serveStatic(path.join(__dirname, 'dist')))
+app.use(serveStatic(path.join(__dirname, '')));
 const port  = process.env.PORT || 3000;
 
 app.get('/api/offers', (req, res) => {
