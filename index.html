@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        Full stack Web Development Syllabus
+    </title>
+    <style>
+        body{
+            background-color: lightcyan;
+        }
+        .brand {
+            color:black;
+        }
+        .title-header {
+            color: #323232;
+        }
+        #topics {
+            width: 70%;
+        }
+        .topic-row {
+            background-color: lightblue;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .duration-cell,
+        .topic-cell {
+            padding: 10px;
+        }
+
+        .sub-topic-row{
+            display: none;
+        }
+        .sub-topic-row.active{
+            display: block;
+        }
+    </style>
+</head>
+<body onload="loadDetails()">
+    <h2 class="title-header">
+        Full stack Web Development Syllabus
+    </h2>
+    <div id="topics">
+
+    </div>
+    <script>
+        function getDuration(duration){
+            var hr = Math.floor(duration.value / 60);
+            var min = duration.value % 60;
+            var result = (hr > 0 ? `${hr}hr ` : '') + (min > 0 ? `${min}min` : '');
+            return result;
+        }
+
+        function expandCollapseTopic(el) {
+            console.log(el);
+            const subtitles = el.parentElement.querySelector('.sub-topic-row');
+            if(subtitles.classList.contains('active')){
+                subtitles.classList.remove('active');
+            } else {
+                subtitles.classList.add('active');
+            }
+            
+        }
+
+        function generateHtml(syllabus) {
+            var d = document.getElementById("topics");
+            var nodes = '<div class="container">';
+            syllabus.forEach(topic => {
+                nodes += '<div class="topic">';
+                
+                nodes += '<div class="topic-row" onclick="expandCollapseTopic(this)">';
+                nodes += `<div class="topic-cell">${topic.topic}</div>`;
+                nodes += `<div class="duration-cell">${getDuration(topic.duration)}</div>`;
+                nodes += '</div>'
+
+                nodes += '<div class="sub-topic-row">';
+                topic.contentList.forEach(subtitle => {
+                    nodes += `<div class="topic-cell">${subtitle}</div>`;
+                });
+                nodes += '</div>';
+
+                nodes += '</div>';
+            });
+            nodes += '</div>';
+            d.innerHTML = nodes;
+        }
+
+        function loadDetails() {
+            console.log('get rest call');
+            const header = {
+                headers: {
+                    "content-type": 'application/json',
+                    "Accept": 'application/json'
+                }
+            };
+            fetch('/api/getSyllabus', header).then((response) => {
+                response.json().then((data) => {
+                    console.log('rest call details', data);
+                    generateHtml(data);
+                });
+            });
+            
+        }
+    </script>
+</body>
