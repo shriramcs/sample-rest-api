@@ -3,6 +3,30 @@ body{
     display: block;
 }
 
+header.header {
+    height: 100px;
+    width: 100%;
+    background-color: #122f69;
+    color: aqua;
+    margin-bottom: 20px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+header.header span.brand-name {
+    padding-left: 40px;
+    font-size: xx-large;
+}
+footer.footer {
+    color: aqua;
+    background-color: #4162a4;
+    height: 40px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    padding-left: 40px;
+}
+
 .brand {
     color:black;
 }
@@ -17,11 +41,10 @@ body{
     justify-content: space-between;
     width: 100%;
 }
-.duration-cell,
-.topic-cell {
-    padding: 10px;
+.topic-row {
+    display: flex;
+    flex-flow: row nowrap;
 }
-
 .sub-topic-row{
     display: none;
 }

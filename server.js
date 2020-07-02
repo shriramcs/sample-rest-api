@@ -32,12 +32,17 @@ app.post('/book', (req, res) => {
     // We will be coding here
 });
 
-app.post('/*', (req, res) => {
-    res.redirect('/');
+
+app.get('/projects', function(req, res) {
+    res.sendFile(path.join(__dirname + '/projects.html'));
 });
 
-app.get('/me', function(req, res) {
+app.get('/about', function(req, res) {
     res.sendFile(path.join(__dirname + '/me.html'));
+});
+
+app.post('/*', (req, res) => {
+    res.redirect('/');
 });
 
 app.get('/', function(req, res) {
