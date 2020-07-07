@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>
-        Full stack Web Development Syllabus
+        Web development Services
     </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,21 +12,58 @@
     <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
-<body onload="loadDetails()">
-    <header class="header">
-        <span class="brand-name">Full stack Web Development</span>
-    </header>
-    <div class="container" style="min-height: 400px;">
-        <!-- <h2 class="display-8">Full stack Web Development</h2> -->
-        <div id="topics">
 
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Springlabs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/courses">Courses</a>
+                </li>
+            </ul>
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+        </div>
+    </nav>
+    <div class="jumbotron">
+        <h1 class="display-4">Hello, Learner!</h1>
+        <p class="lead">Are you thinking of where to start web development ? we have you covered.</p>
+        <hr class="my-4">
+        <p>Follow this link to explore courses offered. <a class="btn btn-primary btn-lg" href="/courses" role="button">Courses</a></p>
+    </div>
+    <!-- <header class="header">
+        <span class="brand-name">Full stack Web Development</span>
+    </header> -->
+    <!-- <div style="min-height: 400px; padding: 20px;">
+        <div class="row">
+            <div class="col-3">
+                Web Development Courses
+                <span id="totalHrs"></span>
+            </div>
+
+            <div class="col-9">
+                <div id="topics" class="container">
+                    Course Details Loading...
+                </div>
+            </div>
         </div>
     </div>
     <footer class="footer" style="margin-top:100px;">
         by @shriramcs
-    </footer>
-    <script>
-        function getDuration(duration){
+    </footer> -->
+    <!-- <script>
+        function getDuration(duration) {
             var hr = Math.floor(duration.value / 60);
             var min = duration.value % 60;
             var result = (hr > 0 ? `${hr}hr ` : '') + (min > 0 ? `${min}min` : '');
@@ -35,20 +73,21 @@
         function expandCollapseTopic(el) {
             // console.log(el);
             const subtitles = el.parentElement.querySelector('.sub-topic-row');
-            if(subtitles.classList.contains('active')){
+            if (subtitles.classList.contains('active')) {
                 subtitles.classList.remove('active');
             } else {
                 subtitles.classList.add('active');
             }
-            
+
         }
 
         function generateHtml(syllabus) {
             var d = document.getElementById("topics");
             var nodes = '<div class="syllabus-container">';
+            var total = 0;
             syllabus.forEach(topic => {
                 nodes += '<div class="card">';
-                
+
                 nodes += '<div class="card-header topic-row" onclick="expandCollapseTopic(this)">';
                 nodes += `<div class="topic-cell">${topic.topic}</div>`;
                 nodes += `<div class="duration-cell">${getDuration(topic.duration)}</div>`;
@@ -61,27 +100,41 @@
                 nodes += '</ul>';
 
                 nodes += '</div>';
+
+                total += +topic.duration.value;
             });
             nodes += '</div>';
             d.innerHTML = nodes;
+            document.getElementById("totalHrs").innerText = getDuration({ value: total });
         }
+        const header = {
+            headers: {
+                "content-type": 'application/json',
+                "Accept": 'application/json'
+            }
+        };
 
         function loadDetails() {
             // console.log('get rest call');
-            const header = {
-                headers: {
-                    "content-type": 'application/json',
-                    "Accept": 'application/json'
-                }
-            };
+
             fetch('/api/getSyllabus', header).then((response) => {
                 response.json().then((data) => {
                     // console.log('rest call details', data);
                     generateHtml(data);
                 });
             });
-            
+
+            // test();
         }
-    </script>
+
+        async function test() {
+            let response = await fetch('/api/offers', header)
+            let data = await response.json();
+            console.log('rest call details', data);
+        }
+    </script> -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

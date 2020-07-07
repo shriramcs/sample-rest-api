@@ -82,3 +82,12 @@ footer.footer {
 @media (min-width: 1200px) {
     /*  */
 }
+
+#totalHrs {
+    font-size: 0.9rem;
+    background-color: #cfdb40;
+    color: #171a1a;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}

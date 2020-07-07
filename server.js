@@ -40,13 +40,19 @@ app.get('/projects', function(req, res) {
 app.get('/about', function(req, res) {
     res.sendFile(path.join(__dirname + '/me.html'));
 });
+app.get('/courses/html-css-javascript-dom', function(req, res) {
+    res.sendFile(path.join(__dirname + '/courses/html-css-javascript-dom.html'));
+});
+app.get('/courses', function(req, res) {
+    res.sendFile(path.join(__dirname + '/courses/courses.html'));
+});
 
 app.post('/*', (req, res) => {
     res.redirect('/');
 });
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
+    res.sendFile(path.join(__dirname + '/courses/courses.html'));
 });
 
 
